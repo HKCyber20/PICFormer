@@ -1,0 +1,11 @@
+torch>=2.0
+torchvision
+pyyaml
+numpy
+tqdm
+einops
+timm
+matplotlib==3.7.1
+scikit-image
+opencv-python
+ipython 

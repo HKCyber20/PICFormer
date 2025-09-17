@@ -1,0 +1,29 @@
+data:
+  train_dataset: "Human36M"
+  val_dataset: "ThreeDPW"
+  batch_size: 64
+  num_workers: 4
+  data_path: "data/processed"
+
+model:
+  channel: 128
+  groups_S: [[0,1,2], [3,4,5], [6,7,8], [9,10,11], [12,13,14], [15,16]]
+  groups_T: [[0,1,2], [3,4,5], [6,7,8], [9,10,11], [12,13,14], [15,16]]
+  eps: 0.01
+  beta: 10.0
+  tau: 0.5
+  num_joints: 17
+  num_frames: 243
+
+train:
+  lr: 1e-5
+  epochs: 128
+  weight_decay: 0.01
+  device: "cuda"
+  save_interval: 10
+  log_interval: 100
+
+loss:
+  lambda_vis: 0.1
+  lambda_hc: 0.1
+  lambda_mpjpe: 1.0 
