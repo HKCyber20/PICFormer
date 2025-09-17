@@ -2,9 +2,19 @@
 
 This is a Transformer-based 3D human pose estimation project implementing the PICFormer (Pose-aware Interactive Cross-modal Transformer) model.
 
-![](C:\Users\31291\OneDrive\论文\figure\flow_chart_new.png)
+## Architecture Overview
 
+PICFormer introduces a novel closed-loop architecture that unifies Perception, Inference, and Constraints. The model consists of a Visibility-Aware Feature Modulation (VFM) module and a Gated-Pyramid Attention (GPA) Module, which leverages synchronized pyramidal aggregation (SPA).
 
+![PICFormer Architecture](assets/architecture.png)
+*Figure 1: The overall network architecture of PICFormer.*
+
+## Key Mechanisms: Synchronized Pyramidal Aggregation (SPA)
+
+At the core of PICFormer is the SPA module, which builds a multi-scale spatio-temporal feature hierarchy. This allows the model to use high-level semantics to guide low-level occlusion reasoning. The pyramid structure is constructed for both spatial (joints, parts, regions) and temporal (frames, clips, sequences) domains.
+
+![SPA Pooling Strategy](assets/spa_details.png)
+*Figure 2: Diagram illustrating the pooling strategy and construction of the spatio-temporal pyramid structure.*
 
 ## Project Features
 
@@ -110,6 +120,22 @@ python src/infer.py --input data/input_poses.npy --output output/results.npz --c
 ```bash
 python tests/test_models.py
 ```
+
+## Results
+
+### Qualitative Results
+
+PICFormer demonstrates robust and reliable performance in complex actions, often producing pose estimations that are closer to the ground truth than other state-of-the-art methods.
+
+![Qualitative Comparisons on Human3.6M](assets/qualitative_results.png)
+*Figure 3: Qualitative comparisons on the Human3.6M dataset against HiPART. Our model's predictions are visibly closer to the ground truth.*
+
+### Generalization to In-the-Wild Scenarios
+
+Although trained solely on the Human3.6M dataset, PICFormer generalizes effectively to various unseen in-the-wild scenarios, including sports and dance.
+
+![In-the-Wild Results](assets/in_the_wild.png)
+*Figure 4: Visualization of performance on various challenging in-the-wild scenarios.*
 
 ## Configuration
 
